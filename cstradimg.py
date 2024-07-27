@@ -22,6 +22,7 @@ from deep_translator import GoogleTranslator #pip install deep-translator
 
 import keyboard
 
+import ctypes
 
 def onselect(eclick, erelease):
     if eclick.ydata>erelease.ydata:
@@ -65,6 +66,8 @@ if __name__ == '__main__':
         jointresult = jointresult+" "+str(res[1])
 
     translated = GoogleTranslator(source='auto', target='es').translate(jointresult)
-    print(translated)
+    #print(translated)
+    MessageBox = ctypes.windll.user32.MessageBoxW
+    MessageBox(None, translated, 'Resultado de traduccion', 0)
 
     input("Enter para cerrar...")
